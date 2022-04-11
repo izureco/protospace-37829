@@ -33,13 +33,11 @@ class PrototypesController < ApplicationController
   end
 
   def update
-    prototype = Prototype.find(params[:id])
-    if prototype.update(prototype_params)
-      redirect_to prototype_path(prototype.id)
+    @prototype = Prototype.find(params[:id])
+    if @prototype.update(prototype_params)
+      redirect_to prototype_path(@prototype.id)
     else
-      redirect_to edit_prototype_path(prototype.id)
-      # render :edit
-      # この場合、renderとすると、なぜか入力が消えてしまう。なぜ?
+      render :edit
     end
   end
 
